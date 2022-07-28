@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Register Form</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="jquery.js"></script>
+    <script>
+        function checkPasswordMatch() {
+            var password = $("#txtNewPassword").val();
+            var confirmPassword = $("#txtConfirmPassword").val();
+            if (password != confirmPassword)
+                $("#CheckPasswordMatch").html("Passwords does not match!");
+            else
+                $("#CheckPasswordMatch").html("Passwords match.");
+
+        }
+        $(document).ready(function () {
+            $('.error').hide();
+
+            $(".form-footer").find(".btn").click(function () {
+                var email = $('#email').val();
+                if (email == '') {
+                    $('#email').next().show();
+                    return false;
+                }
+                if (IsEmail(email) == false) {
+                    $('#invalid_email').show();
+                    return false;
+                }
+
+            });
+            $("#txtConfirmPassword").keyup(checkPasswordMatch);
+        });
+
+        function IsEmail(email) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test(email)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        
+
+    </script>
+
+</head>
+
+<body>
+    <form class="signup-form" action="" method="post" id="contactform">
+
+
+        <div class="form-header">
+            <h1>Create Account</h1>
+        </div>
+
+
+        <div class="form-body">
+
+
+            <div class="horizontal-group">
+                <div class="form-group left">
+                    <label for="firstname" class="label-title">First name *</label>
+                    <input type="text" id="firstname" class="form-input" placeholder="Enter your first name"
+                        required="required" />
+                </div>
+                <div class="form-group right">
+                    <label for="lastname" class="label-title">Last name</label>
+                    <input type="text" id="lastname" class="form-input" placeholder="Enter your last name" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email" class="label-title">Email*</label>
+                <input type="email" id="email" class="form-input" placeholder="Enter your email" required="required">
+                <span class="error" id="invalid_email">Email-id is invalid</span>
+            </div>
+
+
+            <div class="horizontal-group">
+                <div class="form-group left">
+                    <label for="password" class="label-title">Password *</label>
+                    <input type="password" id="txtNewPassword" class="form-input" placeholder="Enter your password"
+                        required="required">
+                </div>
+
+                <div class="form-group right">
+                    <label for="confirm-password" class="label-title">Confirm Password *</label>
+                    <input type="password" class="form-input" id="txtConfirmPassword"
+                        placeholder="Enter your password again" required="required">
+                    <div class="registrationFormAlert" style="color:green;" id="CheckPasswordMatch">
+                    </div>
+
+
+                </div>
+
+
+                <div class="horizontal-group">
+                    <div class="form-group left">
+                        <label class="label-title">Gender *</label>
+                        <div class="input-group">
+                            <label for="male"><input type="radio" name="gender" value="male" id="male"> Male</label>
+                            <label for="female"><input type="radio" name="gender" value="female" id="female">
+                                Female</label>
+                            <label for="others"><input type="radio" name="gender" value="others" id="others">
+                                Others</label>
+                        </div>
+                    </div>
+                    <div class="form-group right">
+                        <label class="label-title">Hobbies</label>
+                        <div>
+                            <label><input type="checkbox" value="Web">Music</label>
+                            <label><input type="checkbox" value="iOS">Sports</label>
+                            <label><input type="checkbox" value="Andriod">Travel</label>
+                            <label><input type="checkbox" value="Game">Movies</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="horizontal-group">
+                    <div class="form-group left">
+                        <label class="label-title">Source of Income *</label>
+                        <select class="form-input" id="level">
+                            <option value="B">Employed</option>
+                            <option value="I">Self-employed</option>
+                            <option value="A">Unemployed</option>
+                        </select>
+                    </div>
+                    <div class="form-group right">
+                        <label for="experience" class="label-title">Income</label>
+                        <input type="range" min="10" max="100" step="10" value="0" id="experience" class="form-input"
+                            onChange="change();" style="height:28px;width:78%;padding:0;">
+                        <span id="range-label">20K</span>
+                    </div>
+                </div>
+
+
+                <div class="horizontal-group">
+                    <div class="form-group left">
+                        <label for="choose-file" class="label-title">Upload Profile Picture *</label>
+                        <input type="file" id="choose-file" size="80">
+                    </div>
+                    <div class="form-group right">
+                        <label for="experience" class="label-title">Age *</label>
+                        <input type="number" min="18" max="150" value="18" class="form-input" required="required">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="choose-file" class="label-title">Bio *</label>
+                <textarea class="form-input" rows="3" cols="50" style="height:auto"  required="required"></textarea>
+            </div>
+        </div>
+        
+
+        <div class="form-footer">
+            <span>required *</span>
+            <button type="submit" class="btn" value="Validate">Create</button>
+        </div>
+
+    </form>
+
+
+
+
+</body>
+
+</html>
